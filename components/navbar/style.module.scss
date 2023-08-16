@@ -3,11 +3,30 @@
     width: 100%;
     display: flex;
     justify-content: space-around;
+    align-items: center;
     list-style: none;
-    li{
-        a{
-            text-decoration: none;
+    li {
+      a {
+        text-decoration: none;
+        &:hover,
+        &:visited,
+        &:active {
+          color: black;
         }
+      }
     }
   }
+  @media (max-width: 576px) {
+    justify-content: space-between;
+    li:nth-child(2) {
+      display: none;
+    }
+  }
+}
+
+.username {
+  min-width: 130px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
 }
