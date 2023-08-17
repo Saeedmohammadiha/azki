@@ -1,7 +1,60 @@
 .registerContainer {
   width: 100%;
 }
+.form {
+  flex-direction: column;
+  gap: 30px;
+  @media (max-width: 576px) {
+    flex-direction: column;
+    gap: 10px;
+  }
+}
 
 .title {
-  margin-bottom: 20px;
+  margin-bottom: 16px;
+  @media (max-width: 576px) {
+    margin-bottom: 10px;
+    text-align: center;
+  }
+}
+
+.nameInputs {
+  justify-content: space-between;
+  .input {
+    width: 47%;
+  }
+  @media (max-width: 768px) {
+    flex-direction: column;
+    gap: 30px;
+    .input {
+      width: 100%;
+    }
+  }
+  @media (max-width: 576px) {
+    gap: 10px;
+  }
+}
+
+.flexContainer {
+  flex-direction: column;
+  gap: 30px;
+  @media (max-width: 576px) {
+    gap: 10px;
+  }
+}
+
+.registerButton {
+  width: 30%;
+  padding: 5px;
+  border-radius: 35px;
+  align-self: flex-end;
+  background-color: #25b79b;
+  font-size: 20px;
+  &:hover {
+    background-color: "#21a088";
+  }
+  @media (max-width: 768px) {
+    align-self: center;
+    font-size: 12px;
+  }
 }

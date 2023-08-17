@@ -6,17 +6,21 @@ import logo from "../../assets/icons/logo.svg";
 import profileIcon from "../../assets/icons/user.svg";
 import { useEffect, useState } from "react";
 import Link from "next/link";
+import { usePathname } from "next/navigation";
 
 export default function Navbar() {
+  const pathname = usePathname();
   const [name, setName] = useState("");
 
   useEffect(() => {
-    const name = localStorage.getItem("name");
-    name && setName(name);
-  }, []);
+    //show the username on pathname change
+    const data = localStorage.getItem("data");
+    const objData = data ? JSON.parse(data || "") : null;
+    objData && setName(objData.name + " " + objData.lastName);
+  }, [pathname]);
 
   return (
-    <navbar className={styles.navbar}>
+    <nav className={styles.navbar}>
       <ul>
         <li>
           <Link href={"/"}>
@@ -37,6 +41,6 @@ export default function Navbar() {
           )}
         </li>
       </ul>
-    </navbar>
+    </nav>
   );
 }

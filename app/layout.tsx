@@ -1,6 +1,6 @@
 import "./globals.css";
 import type { Metadata } from "next";
-import Navbar from "../components/navbar";
+import Navbar from "@/components/navbar";
 import Image from "next/image";
 import carImage from "../assets/icons/car-green.svg";
 import localFont from "next/font/local";
