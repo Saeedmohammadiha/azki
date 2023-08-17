@@ -42,6 +42,9 @@ body {
     position: absolute;
     bottom: -30px;
   }
+  .children-container {
+    width: 100%;
+  }
 }
 
 @media (min-width: 1200px) {

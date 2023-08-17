@@ -1,19 +1,23 @@
 import "./globals.css";
 import type { Metadata } from "next";
-import { Inter } from "next/font/google";
 import Navbar from "../components/navbar";
 import Image from "next/image";
 import carImage from "../assets/icons/car-green.svg";
 import localFont from "next/font/local";
+import { ThemeProvider, createTheme } from "@mui/material";
+
 
 const yekan = localFont({
   src: "../assets/fonts/Yekan.woff2",
-  variable: "--font-yekan",
+  //  variable: "--font-yekan",
 });
 
 export const metadata: Metadata = {
   title: "سامانه مقایسه و خرید آنلاین بیمه",
   description: "this is a test app for azki",
+  icons: {
+    icon: "/logo.svg",
+  },
 };
 
 export default function RootLayout({
