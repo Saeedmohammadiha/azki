@@ -6,25 +6,14 @@ import {
   Grid,
   TextField,
   ThemeProvider,
-  createTheme,
 } from "@mui/material";
 import styles from "./page.module.scss";
 import { ChangeEvent, FormEvent, useState } from "react";
 import { validate } from "@/utils/validations";
 import { useRouter } from "next/navigation";
+import { theme } from "@/utils/theme";
 
-export const theme = createTheme({
-  typography: {
-    fontFamily: "inherit",
-  },
-  palette: {
-    success: {
-      main: "#25b79b",
-      light: "#25b79b",
-      dark: "#25b79b",
-    },
-  },
-});
+
 
 export default function Home() {
   const router = useRouter();
@@ -63,6 +52,7 @@ export default function Home() {
             <h2 className={styles.title}>ثبت نام</h2>
             <Grid container className={styles.nameInputs}>
               <TextField
+                size="small"
                 className={styles.input}
                 hiddenLabel
                 placeholder="نام"
@@ -76,6 +66,7 @@ export default function Home() {
                 error={error.name ? true : false}
               />
               <TextField
+                size="small"
                 className={styles.input}
                 hiddenLabel
                 placeholder="نام خانوادگی"
@@ -91,6 +82,7 @@ export default function Home() {
             </Grid>
             <Grid container className={styles.flexContainer}>
               <TextField
+                size="small"
                 hiddenLabel
                 fullWidth
                 placeholder="شماره موبایل"
@@ -104,6 +96,7 @@ export default function Home() {
                 error={error.mobile ? true : false}
               />
               <TextField
+                size="small"
                 hiddenLabel
                 fullWidth
                 placeholder="رمز عبور"

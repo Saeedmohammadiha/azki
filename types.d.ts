@@ -80,3 +80,18 @@ type Insurance = {
 };
 
 type Discount = { id: number; title: string };
+
+type DialogData = {
+  data: {
+    name: string;
+    lastName: string;
+    mobile: string;
+    password: string;
+  };
+  selectedCarModel: CarModel;
+  selectedCartype: Car;
+  selectedCompany: Insurance;
+  selectedDriver: Discount;
+  selectedThirdParty: Discount;
+};
+

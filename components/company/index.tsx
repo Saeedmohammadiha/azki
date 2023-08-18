@@ -1,6 +1,6 @@
 "use client";
 
-import { theme } from "@/app/page";
+import { theme } from "@/utils/theme";
 import {
   Button,
   FormControl,

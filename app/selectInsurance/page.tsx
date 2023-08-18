@@ -1,9 +1,10 @@
-'use client'
-import { Button } from "@mui/material";
+"use client";
+import { Button, ThemeProvider } from "@mui/material";
 import icon from "../../assets/icons/insurance.svg";
 import Image from "next/image";
 import styles from "./page.module.scss";
 import { useRouter } from "next/navigation";
+import { theme } from "@/utils/theme";
 
 const buttons = [
   { id: 1, title: "شخص ثالث", disabled: false },
@@ -13,7 +14,7 @@ const buttons = [
 export default function SelectInsurance() {
   const router = useRouter();
   return (
-    <>
+    <ThemeProvider theme={theme}>
       <h2 className={styles.title}>انتخاب بیمه</h2>
       <div className={styles.buttonsContainer}>
         {buttons?.map((button) => {
@@ -41,6 +42,6 @@ export default function SelectInsurance() {
           );
         })}
       </div>
-    </>
+    </ThemeProvider>
   );
 }

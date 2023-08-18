@@ -1,5 +1,5 @@
 "use client";
-import { theme } from "@/app/page";
+import { theme } from "@/utils/theme";
 import {
   Button,
   FormControl,
@@ -12,19 +12,36 @@ import KeyboardArrowDownIcon from "@mui/icons-material/KeyboardArrowDown";
 import KeyboardArrowUpIcon from "@mui/icons-material/KeyboardArrowUp";
 
 import styles from "./style.module.scss";
-import { useState } from "react";
+import { useMemo, useState } from "react";
+import Modal from "../modal";
 
 export default function Discounts({ data }: { data: Discount[] }) {
   const [thirdParty, setThirdParty] = useState(0);
   const [driver, setDriver] = useState(0);
+  const [open, setOpen] = useState(false);
 
-  const items = data.map((item) => {
-    return (
-      <MenuItem key={item.id} value={item.id}>
-        {item.title}
-      </MenuItem>
-    );
-  });
+  const items = useMemo(() => {
+    return data.map((item) => {
+      return (
+        <MenuItem key={item.id} value={item.id}>
+          {item.title}
+        </MenuItem>
+      );
+    });
+  }, [data]);
+
+  const handleShowModal = () => {
+    if (thirdParty && driver) {
+      const selectedThirdParty = data.find((item) => item.id === thirdParty);
+      const selectedDriver = data.find((item) => item.id === driver);
+      localStorage.setItem(
+        "selectedThirdParty",
+        JSON.stringify(selectedThirdParty)
+      );
+      localStorage.setItem("selectedDriver", JSON.stringify(selectedDriver));
+      setOpen(true);
+    }
+  };
 
   return (
     <ThemeProvider theme={theme}>
@@ -32,7 +49,7 @@ export default function Discounts({ data }: { data: Discount[] }) {
       <h4 className={styles["opacity"] + " " + styles["title"]}>
         درصد تخفیف بیمه شخص ثالث و راننده را وارد کنید.
       </h4>
-      <Grid container direction={'column'} gap={"20px"}>
+      <Grid container direction={"column"} gap={"20px"}>
         <FormControl fullWidth size="small" className={styles.select}>
           <Select
             IconComponent={(props) => {
@@ -49,7 +66,6 @@ export default function Discounts({ data }: { data: Discount[] }) {
             variant="outlined"
             color="success"
             required
-            name="carType"
           >
             <MenuItem className={styles.opacity} disabled value={0}>
               <span className={styles.opacity}>درصد تخفیف ثالث</span>
@@ -73,7 +89,6 @@ export default function Discounts({ data }: { data: Discount[] }) {
             variant="outlined"
             color="success"
             required
-            name="carType"
           >
             <MenuItem className={styles.opacity} disabled value={0}>
               <span className={styles.opacity}>درصد تخفیف راننده</span>
@@ -82,14 +97,14 @@ export default function Discounts({ data }: { data: Discount[] }) {
           </Select>
         </FormControl>
         <Button
-          //color="success"
           className={styles.button}
           variant="contained"
-          onClick={() => console.log("modal open")}
+          onClick={() => handleShowModal()}
         >
           استعلام قیمت
         </Button>
       </Grid>
+      {open && <Modal open={open} setOpen={setOpen} />}
     </ThemeProvider>
   );
 }
