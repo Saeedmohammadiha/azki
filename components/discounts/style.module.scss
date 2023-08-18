@@ -18,11 +18,8 @@
 .button {
   border-radius: 16px;
   padding: 5px 30px;
-  background-color: #25b79b;
   align-self: flex-end;
-  &:hover {
-    background-color: #25b79b;
-  }
+
   @media (max-width: 576px) {
     font-size: 10px;
     padding: 5px 20px;

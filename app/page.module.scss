@@ -48,11 +48,8 @@
   padding: 5px;
   border-radius: 35px;
   align-self: flex-end;
-  background-color: #25b79b;
   font-size: 20px;
-  &:hover {
-    background-color: #21a088;
-  }
+  color: #fff;
   @media (max-width: 768px) {
     align-self: center;
     font-size: 12px;

@@ -29,7 +29,7 @@ export default function Discounts({ data }: { data: Discount[] }) {
       );
     });
   }, [data]);
-  
+
   //set the data in localstorage and open modal
   const handleShowModal = () => {
     if (thirdParty && driver) {
@@ -113,6 +113,7 @@ export default function Discounts({ data }: { data: Discount[] }) {
         <Button
           className={styles.button}
           variant="contained"
+          color="success"
           onClick={() => handleShowModal()}
         >
           استعلام قیمت
