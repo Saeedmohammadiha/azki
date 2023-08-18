@@ -20,12 +20,13 @@ import { useRouter } from "next/navigation";
 export default function Company({ data }: { data: Insurance[] }) {
   const router = useRouter();
   const [company, setCompany] = useState(0);
+  const [error, setError] = useState(false);
 
   const hanldeNext = () => {
     const selectedCompany = data.find((item) => item.id === company);
     selectedCompany &&
       localStorage.setItem("selectedCompany", JSON.stringify(selectedCompany));
-      router.push('/discounts')
+    selectedCompany ? router.push("/discounts") : setError(true)
   };
   return (
     <ThemeProvider theme={theme}>
@@ -33,7 +34,7 @@ export default function Company({ data }: { data: Insurance[] }) {
       <h4 className={styles["opacity"] + " " + styles["title"]}>
         شرکت بیمه گر قبلی خود را در این بخض وارد کنید.
       </h4>
-      <FormControl fullWidth size="small" className={styles.select}>
+      <FormControl error={error} fullWidth size="small" className={styles.select}>
         <Select
           IconComponent={(props) => {
             return props.className.includes("iconOpen") ? (

@@ -41,8 +41,9 @@ export default function CarType({ data }: { data: Car[] }) {
         "selectedCarModel",
         JSON.stringify(selectedCarModel)
       );
-
-    router.push("/selectCompany");
+    if (selectedCartype && selectedCarModel) {
+      router.push("/selectCompany");
+    }
   };
 
   return (

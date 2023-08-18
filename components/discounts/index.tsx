@@ -10,7 +10,6 @@ import {
 } from "@mui/material";
 import KeyboardArrowDownIcon from "@mui/icons-material/KeyboardArrowDown";
 import KeyboardArrowUpIcon from "@mui/icons-material/KeyboardArrowUp";
-
 import styles from "./style.module.scss";
 import { useMemo, useState } from "react";
 import Modal from "../modal";
@@ -19,6 +18,7 @@ export default function Discounts({ data }: { data: Discount[] }) {
   const [thirdParty, setThirdParty] = useState(0);
   const [driver, setDriver] = useState(0);
   const [open, setOpen] = useState(false);
+  const [error, setError] = useState(false);
 
   const items = useMemo(() => {
     return data.map((item) => {
@@ -29,7 +29,8 @@ export default function Discounts({ data }: { data: Discount[] }) {
       );
     });
   }, [data]);
-
+  
+  //set the data in localstorage and open modal
   const handleShowModal = () => {
     if (thirdParty && driver) {
       const selectedThirdParty = data.find((item) => item.id === thirdParty);
@@ -39,7 +40,10 @@ export default function Discounts({ data }: { data: Discount[] }) {
         JSON.stringify(selectedThirdParty)
       );
       localStorage.setItem("selectedDriver", JSON.stringify(selectedDriver));
+      setError(false);
       setOpen(true);
+    } else {
+      setError(true);
     }
   };
 
@@ -50,7 +54,12 @@ export default function Discounts({ data }: { data: Discount[] }) {
         درصد تخفیف بیمه شخص ثالث و راننده را وارد کنید.
       </h4>
       <Grid container direction={"column"} gap={"20px"}>
-        <FormControl fullWidth size="small" className={styles.select}>
+        <FormControl
+          error={error}
+          fullWidth
+          size="small"
+          className={styles.select}
+        >
           <Select
             IconComponent={(props) => {
               return props.className.includes("iconOpen") ? (
@@ -73,7 +82,12 @@ export default function Discounts({ data }: { data: Discount[] }) {
             {items}
           </Select>
         </FormControl>
-        <FormControl fullWidth size="small" className={styles.select}>
+        <FormControl
+          error={error}
+          fullWidth
+          size="small"
+          className={styles.select}
+        >
           <Select
             IconComponent={(props) => {
               return props.className.includes("iconOpen") ? (
