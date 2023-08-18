@@ -1,0 +1,45 @@
+.selectsContainer {
+  justify-content: space-between;
+  svg {
+    fill: rgb(179, 178, 178) !important;
+  }
+  @media (max-width: 768px) {
+    flex-direction: column;
+    gap: 20px;
+  }
+}
+.select {
+  width: 47%;
+  @media (max-width: 768px) {
+    width: 100%;
+  }
+}
+
+.opacity {
+  opacity: 25% !important;
+}
+
+.title {
+  margin-bottom: 20px;
+}
+
+.buttonsContainer {
+  justify-content: space-between;
+  margin-top: 20px;
+}
+
+.button {
+  position: relative;
+  border-radius: 16px;
+  padding: 5px 30px;
+  @media (max-width: 768px) {
+    font-size: 10px;
+    padding: 5px 20px;
+    span {
+      svg {
+        top:4px;
+        left: 3px;
+      }
+    }
+  }
+}
