@@ -4,11 +4,10 @@ import Navbar from "@/components/navbar";
 import Image from "next/image";
 import carImage from "../assets/icons/car-green.svg";
 import localFont from "next/font/local";
-import { ThemeProvider, createTheme } from "@mui/material";
 
 
 const yekan = localFont({
-  src: "../assets/fonts/Yekan.woff2",
+  src: "../assets/fonts/Vazir.woff2",
   //  variable: "--font-yekan",
 });
 

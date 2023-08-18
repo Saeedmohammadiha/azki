@@ -4,13 +4,13 @@ import {
   Dialog,
   DialogActions,
   DialogTitle,
-  Divider,
   Grid,
   List,
   ListItem,
   ListItemText,
 } from "@mui/material";
 import { Dispatch, SetStateAction, useEffect, useState } from "react";
+import styles from "./style.module.scss";
 
 export default function Modal({
   open,
@@ -31,96 +31,67 @@ export default function Modal({
     const selectedDriver = getFromLocalStorage("selectedDriver");
 
     setData({
-      data: data,
-      selectedCarModel: selectedCarModel,
-      selectedCartype: selectedCartype,
-      selectedCompany: selectedCompany,
-      selectedDriver: selectedDriver,
-      selectedThirdParty: selectedThirdParty,
+      ...data,
+      selectedCarModel: selectedCarModel?.title,
+      selectedCartype: selectedCartype?.title,
+      selectedCompany: selectedCompany?.title,
+      selectedDriver: selectedDriver?.title,
+      selectedThirdParty: selectedThirdParty?.title,
     });
   }, []);
 
   return (
-    <Dialog maxWidth={"md"} open={open} onClose={() => setOpen(false)}>
-      <DialogTitle sx={{ textAlign: "right" }}>ثبت اطلاعات</DialogTitle>
-      <Grid
-        container
-        flexDirection={"row-reverse"}
-        sx={{ width: "100%", padding: "20px", textAlign: "center" }}
-      >
-        <List>
-          <ListItem sx={{ textAlign: "center" }}>
-            <ListItemText primary="نام" secondary={data?.data.name} />
+    <Dialog open={open} onClose={() => setOpen(false)} sx={{ zIndex: "20" }}>
+      <DialogTitle className={styles.title}>ثبت اطلاعات</DialogTitle>
+      <Grid container className={styles.container}>
+        <List className={styles.list}>
+          <ListItem>
+            <ListItemText primary="نام" secondary={data?.name} />
           </ListItem>
-          <Divider />
-          <ListItem sx={{ textAlign: "center" }}>
-            <ListItemText
-              primary="شرکت بیمه گر قبلی"
-              secondary={data?.selectedCompany.title}
-            />
+          <ListItem>
+            <ListItemText primary="نام خانوادگی" secondary={data?.lastName} />
           </ListItem>
-          <Divider />
-          <ListItem sx={{ textAlign: "center" }}>
-            <ListItemText
-              primary="خودرو"
-              secondary={data?.selectedCartype.title}
-            />
+          <ListItem>
+            <ListItemText primary="شماره موبایل" secondary={data?.mobile} />
           </ListItem>
         </List>
-
-        <List>
-          <ListItem sx={{ textAlign: "center" }}>
-            <ListItemText
-              primary="نام خانوادگی"
-              secondary={data?.data.lastName}
-            />
+        <List className={styles.list}>
+          <ListItem>
+            <ListItemText primary="خودرو" secondary={data?.selectedCartype} />
           </ListItem>
-          <Divider />
-          <ListItem sx={{ textAlign: "center" }}>
-            <ListItemText
-              primary="درصد تخفیف ثالث"
-              secondary={data?.selectedThirdParty?.title}
-            />
-          </ListItem>
-          <Divider />
-          <ListItem sx={{ textAlign: "center" }}>
+          <ListItem>
             <ListItemText
               primary="مدل خودرو"
-              secondary={data?.selectedCarModel.title}
+              secondary={data?.selectedCarModel}
+            />
+          </ListItem>
+          <ListItem>
+            <ListItemText
+              primary="شرکت بیمه گر قبلی"
+              secondary={data?.selectedCompany}
             />
           </ListItem>
         </List>
-
-        <List>
-          <ListItem sx={{ textAlign: "center" }}>
+        <List className={styles.list}>
+          <ListItem>
             <ListItemText
-              primary="شماره موبایل"
-              secondary={data?.data.mobile}
+              primary="درصد تخفیف ثالث"
+              secondary={data?.selectedThirdParty}
             />
           </ListItem>
-          <Divider />
-          <ListItem sx={{ textAlign: "center" }}>
+          <ListItem>
             <ListItemText
               primary="درصد تخفیف حوادث راننده"
-              secondary={data?.selectedDriver?.title}
+              secondary={data?.selectedDriver}
             />
           </ListItem>
         </List>
       </Grid>
-      <DialogActions sx={{ direction: "rtl" }}>
-        <Button
-          color="success"
-          sx={{ borderRadius: "16px" }}
-          autoFocus
-          onClick={() => setOpen(false)}
-        >
+      <DialogActions className={styles.actions}>
+        <Button color="success" autoFocus onClick={() => setOpen(false)}>
           لغو
         </Button>
-        <Button
-          color="success"
-          sx={{ borderRadius: "16px" }}
-          onClick={() => setOpen(false)}
-        >
+        <Button color="success" onClick={() => setOpen(false)}>
           تایید
         </Button>
       </DialogActions>
