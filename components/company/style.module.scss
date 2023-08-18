@@ -1,17 +1,6 @@
-.selectsContainer {
-  justify-content: space-between;
+.select{
   svg {
     fill: rgb(179, 178, 178) !important;
-  }
-  @media (max-width: 768px) {
-    flex-direction: column;
-    gap: 20px;
-  }
-}
-.select {
-  width: 47%;
-  @media (max-width: 768px) {
-    width: 100%;
   }
 }
 

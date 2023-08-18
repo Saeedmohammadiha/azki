@@ -1,0 +1,31 @@
+.select {
+  svg {
+    fill: rgb(179, 178, 178) !important;
+  }
+}
+
+.opacity {
+  opacity: 25% !important;
+}
+
+.title {
+  margin-bottom: 20px;
+  @media (max-width: 576px) {
+    text-align: center;
+  }
+}
+
+.button {
+  border-radius: 16px;
+  padding: 5px 30px;
+  background-color: #25b79b;
+  align-self: flex-end;
+  &:hover {
+    background-color: #25b79b;
+  }
+  @media (max-width: 576px) {
+    font-size: 10px;
+    padding: 5px 20px;
+    align-self: center;
+  }
+}
