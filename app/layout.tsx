@@ -5,10 +5,8 @@ import Image from "next/image";
 import carImage from "../assets/icons/car-green.svg";
 import localFont from "next/font/local";
 
-
-const yekan = localFont({
+const vazir = localFont({
   src: "../assets/fonts/Vazir.woff2",
-  //  variable: "--font-yekan",
 });
 
 export const metadata: Metadata = {
@@ -27,7 +25,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body
-        className={yekan.className}
+        className={vazir.className}
         style={{ height: "100vh", overflow: "hidden" }}
       >
         <div className="layout">
